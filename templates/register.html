@@ -4,22 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-image: url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .register-container {
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 330px;
+        }
+        .register-container h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+        .form-floating input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #444;
+            color: #ffffff;
+        }
+        .form-floating input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #666;
+            color: #ffffff;
+        }
+        .form-floating label {
+            color: #aaa;
+        }
+        .btn-primary {
+            background-color: #1e88e5;
+            border-color: #1e88e5;
+        }
+        .btn-primary:hover {
+            background-color: #1565c0;
+            border-color: #1565c0;
+        }
+        .flash-messages {
+            list-style-type: none;
+            padding: 0;
+        }
+        .flash-message {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #444;
+            color: #ffffff;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.25rem;
+        }
+    </style>
 </head>
 <body>
-<h1>Register</h1>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
-<form method="POST" action="/register">
-    <input type="text" name="username" placeholder="Username" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Register</button>
-</form>
+    <div class="register-container">
+        <h1 class="h3 mb-3 fw-normal">Registracija</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li class="flash-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/register">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username" required>
+                <label for="floatingInput">Korisničko ime</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                <label for="floatingPassword">Lozinka</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Registracija</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
