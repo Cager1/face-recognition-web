@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognition Results</title>
+</head>
+<body>
+<h1>Detected Faces</h1>
+
+{% for face in recognized_faces %}
+    <p>Face: {{ face }}</p>
+{% endfor %}
+
+<h2>Label New Faces</h2>
+<form action="/save" method="POST">
+    {% for face in recognized_faces %}
+        {% if face == "Unknown" %}
+            <input type="text" name="names[]" placeholder="Enter name">
+            <input type="hidden" name="face_encodings[]" value="{{ face_encodings }}">
+        {% endif %}
+    {% endfor %}
+    <button type="submit">Save Faces</button>
+</form>
+</body>
+</html>
