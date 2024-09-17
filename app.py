@@ -22,6 +22,11 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# on / get route redirect to dashboard
+@app.route('/')
+def home():
+    return redirect(url_for('dashboard'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
